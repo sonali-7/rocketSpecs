@@ -62,8 +62,8 @@ def calculate_stage_permutations(stages):
                 prop3val = PROPELLANTS[prop3]
                 current_stage = [
                     Stage(prop1val, stages[0].dry_mass, stages[0].propellant_mass, stages[0].payload_mass),
-                    Stage(prop2val, stages[0].dry_mass, stages[0].propellant_mass, stages[0].payload_mass),
-                    Stage(prop3val, stages[0].dry_mass, stages[0].propellant_mass, stages[0].payload_mass),
+                    Stage(prop2val, stages[1].dry_mass, stages[1].propellant_mass, stages[1].payload_mass),
+                    Stage(prop3val, stages[2].dry_mass, stages[2].propellant_mass, stages[2].payload_mass),
                 ]
                 stage_combinations.append(current_stage)
     return stage_combinations
@@ -87,14 +87,13 @@ def main():
             best_rocket = rocket
     print(best_rocket)
 
-    # saturn_v_rocket = Rocket(original_saturn_v_stages)
-    # alternate_saturn_v_stages = [
-    #     Stage(PROPELLANTS['RP-1/LOX'], 137000, 2214000 - 137000, 0),  # S-IC stage
-    #     Stage(PROPELLANTS['LH2/LOX'], 40100, 496200 - 40100, 0),  # S-II stage
-    #     Stage(PROPELLANTS['LH2/LOX'], 15200, 123000 - 15200, 0),  # S-IVB stage
-    # ]
-    # print(f"\nSaturn V-like configuration total Δv: {saturn_v_rocket.total_delta_v():.1f} m/s")
-
+    saturn_v_rocket = Rocket(original_saturn_v_stages)
+    alternate_saturn_v_stages = [
+        Stage(PROPELLANTS['RP-1/LOX'], 137000, 2214000 - 137000, 0),  # S-IC stage
+        Stage(PROPELLANTS['LH2/LOX'], 40100, 496200 - 40100, 0),  # S-II stage
+        Stage(PROPELLANTS['LH2/LOX'], 15200, 123000 - 15200, 0),  # S-IVB stage
+    ]
+    print(f"\nSaturn V-like configuration total Δv: {saturn_v_rocket.total_delta_v():.1f} m/s")
 
 
 if __name__ == "__main__":
