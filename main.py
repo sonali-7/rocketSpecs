@@ -110,7 +110,7 @@ def find_best_rocket(combinations: List[List[Stage]]) -> Rocket:
 def main():
     # drymass, propellant mass, payload mass
     original_saturn_v_stages = [
-        Stage(PROPELLANTS['RP-1/LOX'], 137000, 2214000 - 137000, 0),  # S-IC stage
+        Stage(PROPELLANTS['RP-1/LOX'], 137000, 2214000 - 137000, 73706.5601077),  # S-IC stage
         Stage(PROPELLANTS['LH2/LOX'], 40100, 496200 - 40100, 0),  # S-II stage
         Stage(PROPELLANTS['LH2/LOX'], 15200, 123000 - 15200, 0),  # S-IVB stage
     ]
@@ -118,6 +118,7 @@ def main():
     print(f"Originally, saturn v has a total Δv of {Rocket(original_saturn_v_stages).total_delta_v()}")
     combinations = find_all_stage_combinations(original_saturn_v_stages)
     best_rocket = find_best_rocket(combinations)
+    print(best_rocket)
     print(f"Using different fuel combinations in the saturn v rocket, the best combinations can have a Δv{best_rocket.total_delta_v()}")
 
 
